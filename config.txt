@@ -1,0 +1,12 @@
+0.05   # absolute error
+0.001  # relative error
+4      # number of threads
+20     # a
+0.2    # b
+6.2831853   # c
+-100   # x1
+100    # x2
+-100   # y1
+100    # y2
+100    # initial steps
+100 # max steps
