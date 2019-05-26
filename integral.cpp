@@ -15,6 +15,14 @@ std::mutex mutex;
 double function_to_integrate(const func_params_t& params, const double& x, const double& y){
     return -params.a * exp(-params.b * sqrt(0.5 * (x*x + y*y))) - exp(0.5 * (cos(params.c*x) +
     cos(params.c*y))) + params.a + exp(1);
+//int m = 5;
+//    double x1_sum = 0, x2_sum = 0;
+//    for(int i=1; i <= m; i++){
+//        x1_sum += i * cos((i+1) * x + 1);
+//        x2_sum += i * cos((i+1) * y + 1);
+//    }
+//    return - x1_sum * x2_sum;
+
 }
 
 
@@ -68,13 +76,13 @@ result_t integrate_interval(const func_params_t& params, const double& x1, const
     return result;
 }
 
-void integrate_interval_with_mutex(std::vector<result_t>& res, const func_params_t& params, const double& x1,
-        const double& x2, double y1, const double& y2, const double& config_rel_err, const double& config_abs_err,
+void integrate_interval_with_mutex(std::vector<result_t>* res, const func_params_t params, const double x1,
+        const double x2, double y1, const double y2, const double config_rel_err, const double config_abs_err,
         size_t initial_steps, size_t max_steps){
     result_t cur_res = integrate_interval(params, x1, x2, y1, y2, config_rel_err, config_abs_err, initial_steps, max_steps);
 
     mutex.lock();
-    res.push_back(cur_res);
+    res->push_back(cur_res);
     mutex.unlock();
 }
 

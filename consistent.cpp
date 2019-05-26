@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
 
     std::string filename;
 
-    if (argc == 2){
+    if (argc >= 2){
         filename = argv[1];
     } else{
         std::cerr << "Too few arguments." << std::endl;

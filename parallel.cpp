@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
     std::string filename;
 
-    if (argc == 2){
+    if (argc >= 2){
         filename = argv[1];
     } else{
         std::cerr << "Too few arguments." << std::endl;
@@ -46,19 +46,23 @@ int main(int argc, char* argv[]) {
 
 
     double delta_x = (config.x2 - config.x1) / config.num_threads;
-//    double x_down, x_up;
+    double x_down, x_up;
 
     std::vector<std::thread> threads;
     std::vector<result_t> results_parts;
 
     func_params_t f_params = {config.a, config.b, config.c};
-    
+
+    double new_abs = config.abs_err/config.num_threads;
+    size_t new_initial_steps = config.initial_steps / config.num_threads;
+    size_t new_max_steps = config.max_steps / config.num_threads;
+
     for(int i = 0; i < config.num_threads; i++){
-        double x_down = config.x1 + i * delta_x;
-        double x_up = config.x1 + (i + 1) * delta_x;
-        threads.emplace_back(&integrate_interval_with_mutex, &results_parts, f_params, x_down, x_up,
-                config.y1, config.y2, config.rel_err, config.abs_err/config.num_threads, config.initial_steps,
-                config.max_steps);
+        x_down = config.x1 + i * delta_x;
+        x_up = config.x1 + (i + 1) * delta_x;
+        threads.emplace_back(integrate_interval_with_mutex, &results_parts, f_params, x_down, x_up,
+                config.y1, config.y2, config.rel_err, new_abs, new_initial_steps,
+                new_max_steps);
     }
 
     auto before = get_current_time_fenced();

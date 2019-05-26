@@ -27,8 +27,8 @@ result_t integrate_interval(const func_params_t& params, const double& x1, const
                             const double& config_abs_err, size_t initial_steps, size_t max_steps);
 
 
-void integrate_interval_with_mutex(std::vector<result_t>& res, const func_params_t& params, const double& x1,
-const double& x2, double y1, const double& y2, const double& config_rel_err, const double& config_abs_err,
+void integrate_interval_with_mutex(std::vector<result_t>* res, const func_params_t params, const double x1,
+        const double x2, double y1, const double y2, const double config_rel_err, const double config_abs_err,
         size_t initial_steps, size_t max_steps);
 
 
