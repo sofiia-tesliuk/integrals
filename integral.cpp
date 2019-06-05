@@ -15,14 +15,6 @@ std::mutex mutex;
 double function_to_integrate(const func_params_t& params, const double& x, const double& y){
     return -params.a * exp(-params.b * sqrt(0.5 * (x*x + y*y))) - exp(0.5 * (cos(params.c*x) +
     cos(params.c*y))) + params.a + exp(1);
-//int m = 5;
-//    double x1_sum = 0, x2_sum = 0;
-//    for(int i=1; i <= m; i++){
-//        x1_sum += i * cos((i+1) * x + 1);
-//        x2_sum += i * cos((i+1) * y + 1);
-//    }
-//    return - x1_sum * x2_sum;
-
 }
 
 

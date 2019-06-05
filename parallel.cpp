@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
     final_result.rel_err /= final_result.res_value;
 
     std::cout << "Result: " << final_result.res_value << std::endl;
-    std::cout << "Abs err : rel err " << final_result.abs_err << " : " << final_result.rel_err << std::endl;
+    std::cout << "Abs err : rel err | " << final_result.abs_err << " : " << final_result.rel_err << std::endl;
     std::cout << "Time: " << to_us(time_to_calculate)  << std::endl;
 
     return 0;

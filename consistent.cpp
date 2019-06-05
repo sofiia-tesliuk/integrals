@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     auto time_to_calculate = get_current_time_fenced() - before;
 
     std::cout << "Result: " << res.res_value << std::endl;
-    std::cout << "Abs err : rel err " << res.abs_err << " : " << res.rel_err << std::endl;
+    std::cout << "Abs err : rel err | " << res.abs_err << " : " << res.rel_err << std::endl;
     std::cout << "Time: " << to_us(time_to_calculate)  << std::endl;
 
     return 0;
